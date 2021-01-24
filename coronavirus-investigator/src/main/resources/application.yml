@@ -1,0 +1,21 @@
+
+
+#VIRUS_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv";
+#private static String VIRUS_DATA_DEATH_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv";
+#	private static String VIRUS_DATA_RECOVERED_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv";
+#	private static String TOTAL_GLOBAL_INFO = "https://covid19.mathdro.id/api";
+
+covidplatform:
+    virus_data_john_url: https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv
+    virus_data_death_john__url: https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv
+    virus_data_recoverd_john_url: https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv
+    virus_total_global_data: https://covid19.mathdro.id/api
+    virus_total_India_data: https://covid19.mathdro.id/api/countries/India
+    virus_total_global_all_info_data: https://covid19.mathdro.id/api/confirmed
+    mainland_china: https://covid19.mathdro.id/api/daily
+    indian_states: https://api.rootnet.in/covid19-in/stats/latest
+    virus_john_updated_death: https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv
+   
+    
+    
+     

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body style="background-color: MINTCREAM;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Eye on Coronavirus</title>
+<link rel="stylesheet" href="/Users/aanchal.sharma/Documents/workspace_sts/coronavirus-investigator/src/main/resources/templates/stylesheet.css">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+ <style>
+.my-custom-scrollbar {
+	position: relative;
+	height: 400px;
+	overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+	display: block;
+}
+</style> 
+
+<script>
+  window.watsonAssistantChatOptions = {
+      integrationID: "6c4c26b7-b377-47b0-a091-3fdbd4982ac5", // The ID of this integration.
+      region: "eu-gb", // The region your integration is hosted in.
+      serviceInstanceID: "24e274f6-aff8-439e-9182-ee34c2c583c9", // The ID of your service instance.
+      onLoad: function(instance) { instance.render(); }
+    };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+    document.head.appendChild(t);
+  });
+</script>
+
+</head>
+
+<div class="container">
+
+	<div align="center">
+		<h1>COVID-19 Global Report Tracker</h1>
+	</div>
+	</br>
+
+	 <div align="right">
+		<font size="3" color="grey"><i><a
+				href="https://www.linkedin.com/in/aanchal-sharma10">Developed by
+					Aanchal Sharma</a></i></font>
+	</div> 
+
+	</br>
+	<p class="lead" align="center">
+		<font face="verdana" color="green"><b>This disease cannot
+				be eliminated but we can definitely reduce it's impact by social
+				distancing</b></font>
+	</p>
+	<p style="font-style: italic;" align="center">Let us all be
+		responsible and together fight against COVID-19</p>
+
+
+	<p style="font-style: italic;" align="center">
+		<font size="4" color="green" align="center">Let's track the
+			pandemic COVID-19.</font>
+	</p>
+
+	<!-- <div class="jumbotron">
+  <h1 class="display-4" th:text="${latestTotalCases}"></h1>
+  <p class="lead">Total Reported cases</p>
+  <hr class="my-4">
+  <h1 class="display-4" th:text="${latestNewCases}"></h1>
+  <p class="lead">New cases reported since previous day</p>
+  <hr class="my-4">
+  <h1 class="display-4" th:text="${totalDeaths}"></h1>
+  <p class="lead">Total Deaths Reported</p>
+  <hr class="my-4">
+  <h1 class="display-4" th:text="${totalRecovered}"></h1>
+  <p class="lead">Total recoveries reported</p>
+  <hr class="my-4">
+  <h1 class="display-4" th:text="${totalSick}"></h1>
+  <p class="lead">Total currently healing/sick</p>
+    
+  </div> -->
+
+
+	<div class="alert alert-danger" role="alert" align="center">
+		<h1 class="display-4" th:text="${latestTotalCases}"></h1>
+		<p class="lead">Global Confirmed Reported cases</p>
+	</div>
+	<div class="alert alert-warning" role="alert" align="center">
+		<h1 class="display-4" th:text="${latestNewCases}"></h1>
+		<p class="lead">New cases reported since previous day (One Day Spike)</p>
+	</div>
+
+
+	<div class="alert alert-primary" role="alert" align="center">
+		<p class="lead">
+			<b>Currently Most Affected Country with highest cases increased
+				as compared to previous Day</b>
+		</p>
+		<h3 th:text="${city}"></h3>
+		<span>One Day Spike</span>
+		<h3>
+			<b><span th:text="${highestDiff}"></span></b>
+		</h3>
+		<br>
+		<p class="lead">
+			<span>Total confirmed cases - </span> <b><span
+				th:text="${most_affected_conf}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total Recovery Percentage</span> 
+			<h3><span th:text="${mostAffectedRecoveryPercent}"></span></h3>
+		</p>
+		<p class="lead">
+			<span>Total Death Percentage</span> 
+			<h3><span th:text="${mostAffectedDeathPercent}"></span></h3>
+		</p>
+		<p class="lead">
+			<span>Total Recovered Cases -</span> 
+			<span th:text="${most_affected_recovered}"></span>
+		</p>
+		<p class="lead">
+			<span>Total Death Cases -</span> 
+			<span th:text="${most_affected_deaths}"></span>
+		</p>
+		
+		<p class="lead">
+			<span>Total Active Cases -</span> 
+			<span th:text="${mostAffectedActive}"></span>
+		</p>
+	</div>
+
+
+	<div class="alert alert-success" role="alert" align="center">
+		<h1 class="display-4" th:text="${recoveryPercent}"></h1>
+		<p class="lead">Global Recovery percentage</p>
+	</div>
+	<div class="alert alert-primary" role="alert" align="center">
+		<h1 class="display-4" th:text="${deathPercent}"></h1>
+		<p class="lead">Global Death Percentage</p>
+	</div>
+	<div class="alert alert-success" role="alert" align="center">
+		<h1 class="display-4" th:text="${totalRecovered}"></h1>
+		<p class="lead">Global recoveries reported</p>
+	</div>
+	<div class="alert alert-warning" role="alert" align="center">
+		<h1 class="display-4" th:text="${totalDeaths}"></h1>
+		<p class="lead">Global Deaths Reported</p>
+	</div>
+	<div class="alert alert-primary" role="alert" align="center">
+		<h1 class="display-4" th:text="${totalSick}"></h1>
+		<p class="lead">Global currently healing/sick (Active Cases)</p>
+	</div>
+
+
+	<!--   <div class="jumbotron">
+  <p class="lead"><b>Currently Most Affected Country with highest cases increased as compared to previous Day </b></p>
+  <h1 class="display-4" th:text="${city}"></h1>
+  <h1 class="display-4" th:text="${highestDiff}"></h1>
+  <br> 
+  <p class="lead">
+     <span><b>Total confirmed cases - </b></span>
+     <span th:text="${most_affected_conf}"></span>
+  </p>
+   <p class="lead">
+     <span><b>Total recovered cases -</b></span>
+     <span th:text="${most_affected_recovered}"></span>
+  </p>
+   <p class="lead">
+     <span><b>Total death cases - </b></span>
+     <span th:text="${most_affected_deaths}"></span>
+  </p>  
+  </div> -->
+
+
+
+
+
+
+	<div class="alert alert-success" role="alert" align="center">
+		<h3>
+			<b>INDIA</b> - <b><i>#CoronaKoDhona</i></b>
+		</h3>
+		<br>
+			<p class="lead">
+			<span>One Day Spike</span> <b><span
+				th:text="${single_day_India_increase}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total confirmed cases - </span> <b><span
+				th:text="${india_conf}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total Indian cases -</span> <b><span
+				th:text="${india_indian_nationals}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total Foreign cases -</span> <b><span
+				th:text="${india_foreign_nationals}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total Recovery Percentage</span> 
+			<h3><span th:text="${indiaRecoveryPercent}"></span></h3>
+		</p>
+		<p class="lead">
+			<span>Total Death Percentage</span> 
+			<h3><span th:text="${indiaDeathPercent}"></span></h3>
+		</p>
+		<p class="lead">
+			<span>Total Recovered Cases -</span> <b><span
+				th:text="${india_recovered}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total Death Cases -</span> <b><span
+				th:text="${india_deaths}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total Active Cases -</span> <b><span
+				th:text="${indiaAffectedActive}"></span></b>
+		</p>
+		</br>
+		<div align="center">
+			<h4>
+				<b><i><a th:href="@{/displayBarGraph}">Click over to
+							view visualization of COVID-19 spread in Indian States</a></i></b>
+			</h4>
+		</div>
+		</br>
+		<div align="center">
+			<h4>
+				<b><i><a th:href="@{/importantLinks}">Important
+							Information - Secure and Valid Institutions for our COVID-19
+							warriors</a></i></b>
+			</h4>
+		</div>
+		</br>
+
+	</div>
+
+	<!--  <div align="center">
+ <h4>Click below to view visualization of COVID-19 spread in Indian Territory</h4>
+ </div>
+</br>
+  -->
+
+	</br>
+	<div class="alert alert-warning" role="alert" align="center">
+		<h3>
+			<b>Mainland - CHINA (Original Epicentre)</b>
+		</h3>
+		<br>
+		<p class="lead">
+			<span>Total confirmed cases - </span> <b><span
+				th:text="${china_affected_conf}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total recovered cases - </span> <b><span
+				th:text="${china_affected_recovered}"></span></b>
+		</p>
+		<p class="lead">
+			<span>Total death cases - </span> <b><span
+				th:text="${china_affected_deaths}"></span></b>
+		</p>
+
+		<div align="center">
+			<h4>
+				<b><i><a th:href="@{/displayPieChart}">Click over to
+							view the Global Spread as compared to China</a></i></b>
+			</h4>
+		</div>
+		</br>
+
+	</div>
+
+	</br>
+
+	<div align="center">
+		<p class="lead">
+			<b>Indian States and Union Territories</b>
+		</p>
+	</div>
+
+
+	<div class="table-wrapper-scroll-y my-custom-scrollbar">
+		<table class="table table-bordered table-striped mb-0">
+			<tr>
+				<th>Indian City</th>
+				<th>Indian Cases</th>
+				<th>Foreign Cases</th>
+				<th>Total Cases</th>
+				<th>Death Cases</th>
+			</tr>
+			<tr th:each="info1 : ${city_info}">
+				<td th:text="${info1.loc}">NA</td>
+				<td th:text="${info1.confirmedCasesIndian}">NA</td>
+				<td th:text="${info1.confirmedCasesForeign}"></td>
+				<td th:text="${info1.totalIndian}"></td>
+				<td th:text="${info1.deaths}"></td>
+			</tr>
+		</table>
+	</div>
+
+
+	</br>
+	<div align="center">
+		<p class="lead">
+			<b>China's, USA and some other Country's statistics in the
+				following table are in break-down form with respect to their
+				respective states along with other countries cumulated statistics</b>
+		</p>
+	</div>
+	</br>
+	<div class="table-wrapper-scroll-y my-custom-scrollbar">
+		<table class="table table-bordered table-striped mb-0">
+			<tr>
+				<th>Country</th>
+				<th>State</th>
+				<th>Total Cases Reported</th>
+				<th>Cases added since Last day</th>
+			</tr>
+			<tr th:each="info : ${locationInfo}">
+				<td th:text="${info.country}">NA</td>
+				<td th:text="${info.state}">NA</td>
+				<td th:text="${info.latestTotalCases}"></td>
+				<td th:text="${info.diffFromPreviousDay}"></td>
+			</tr>
+		</table>
+	</div>
+
+
+</div>
+</br>
+</br>
+<div align="center">
+	<font size="3" color="grey"><i><a
+			href="https://github.com/CSSEGISandData/COVID-19">Source : John
+				Hopkins University</a></i></font></br> <span>Last Updated : </span> <b><i><span
+			th:text="${indian_last_update}"></i></span></b> </br> </br>
+</div>
+
+
+</body>
+
+</html>
